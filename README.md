@@ -3,9 +3,9 @@
 
 How to build the app?
 
-1.) clone the repo
-2.) before building a production app make sure to change passwords & bearer token in dockercompose file & appsettings.json
-3.) run docker-compose build
+1.) clone the repo 
+2.) before building a production app make sure to change passwords & bearer token in dockercompose file & appsettings.json 
+3.) run docker-compose build 
 4.) run docker-compose up
 
 There is a known issue with the current setup.
