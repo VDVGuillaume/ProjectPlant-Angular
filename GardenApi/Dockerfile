@@ -8,10 +8,10 @@ EXPOSE 44390
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["./GardenApi/WebApplication1/GardenApi.csproj", "WebApplication1/"]
-RUN dotnet restore "WebApplication1/GardenApi.csproj"
+COPY ["./GardenApi/GardenApi.csproj", "."]
+RUN dotnet restore "GardenApi.csproj"
 COPY ./GardenApi .
-WORKDIR "/src/WebApplication1"
+WORKDIR "/src/"
 RUN dotnet build "GardenApi.csproj" -c Release -o /app/build
 
 FROM build AS publish

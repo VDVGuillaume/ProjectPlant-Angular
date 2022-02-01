@@ -33,7 +33,7 @@ services:
     api:
         build: 
             context: .
-            dockerfile: ./GardenApi/WebApplication1/Dockerfile        
+            dockerfile: ./GardenApi/Dockerfile        
         depends_on:             
             - db
         ports:
@@ -44,6 +44,8 @@ services:
                     - api
 
     app:
+        environment:
+            - NODE_OPTIONS=--openssl-legacy-provider
         build:
             context: .
             dockerfile: ./client/gardenapp/Dockerfile 
