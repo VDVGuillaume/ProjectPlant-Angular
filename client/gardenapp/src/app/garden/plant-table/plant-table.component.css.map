@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,GAAG;CAAG;;AAIf,AAAA,IAAI,CAAC;EACH,KAAK,EAAG,EAAE;EACV,KAAK,EAAE,GAAG;CAAG",
+    "sources": [
+        "plant-table.component.sass"
+    ],
+    "names": [],
+    "file": "plant-table.component.css"
+}

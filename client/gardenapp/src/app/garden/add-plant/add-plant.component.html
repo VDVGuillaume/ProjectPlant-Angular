@@ -1,0 +1,145 @@
+<mat-card>
+  <mat-card-content>
+    <form class="form-group" [formGroup]="form" (ngSubmit)="onSubmit()">
+     <div>  
+      <mat-form-field>
+        <mat-label>Plant Name</mat-label>
+        <input
+          matInput
+          aria-label="Name"
+          type="text"
+          formControlName="name"
+          required
+          data-cy="plantNameInput"
+        />
+   
+        <mat-error
+          *ngIf="form.get('name')['errors'] && form.get('name').touched"
+        >
+          {{ getErrorMessage(form.get('name')['errors']) }}
+        </mat-error>
+      </mat-form-field>  
+      <div>
+        <mat-form-field>
+          <mat-label>Date planted</mat-label>
+          <input
+            matInput
+            aria-label="Date Planted"
+            formControlName="datePlanted"            
+            type="date"
+            required
+            data-cy="datePlantedInput"
+          />        
+        </mat-form-field>  
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Border</mat-label>
+          <input
+            matInput
+            aria-label="Border"            
+            formControlName="border"
+            type="text"
+            data-cy="borderInput"
+          />        
+        </mat-form-field>  
+      </div>
+      <div class="form-group">
+        Bloom From :
+        <select 
+          class="custom-select" 
+          formControlName="bloomFrom" 
+          (change)="changeBloomFrom($event)"
+          data-cy="bloomFromInput"
+        >          
+          <option value="">Choose Month</option>
+          <option *ngFor="let month of months">
+            {{month}}
+          </option>
+        </select>
+        Bloom Till :
+        <select 
+          class="custom-select" 
+          formControlName="bloomTill" 
+          (change)="changeBloomTill($event)"
+          data-cy="bloomTillInput" 
+          >     
+          <option value="">Choose Month</option>
+          <option *ngFor="let month of months">
+            {{month}}
+          </option>
+        </select>
+      </div>      
+      <div class="form-group">
+        <mat-checkbox 
+        formControlName="winterGreen"
+        (change)="checkWinterGreen($event)"
+        data-cy="winterGreenInput"
+        >   
+        Is this plant wintergreen ?            
+       </mat-checkbox>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Color Flower</mat-label>
+          <input            
+            matInput            
+            aria-label="Color Flower"            
+            formControlName="colorFlower"
+            type="text"
+            data-cy="colorFlowerInput"
+          />        
+        </mat-form-field>  
+        <mat-form-field>
+          <mat-label>Color Leaves</mat-label>
+          <input
+            matInput
+            aria-label="Color Leaves"          
+            formControlName="colorLeaves"
+            type="text"
+            data-cy="colorLeavesInput"
+          />        
+        </mat-form-field>  
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Maximum Height</mat-label>
+          <input
+            matInput
+            aria-label="Max Height"          
+            formControlName="maxHeight"
+            type="number"
+            min="0"
+            data-cy="maximumHeightInput"
+          />        
+        </mat-form-field>  
+        <mat-form-field>
+          <mat-label>Maximum Width</mat-label>
+          <input
+            matInput
+            aria-label="Max Width"
+            formControlName="maxWidth"          
+            type="number"
+            min="0"
+            data-cy="maximumWidthInput"
+          />        
+        </mat-form-field>  
+      </div>
+
+    </div>
+      <button mat-raised-button type="submit" [disabled]="!form.valid" data-cy="addPlantButton">
+        add Plant
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+<mat-card class="error alert alert-danger" *ngIf="errorMessage" data-cy="appError">
+  got an error while adding the plant: {{ errorMessage }}
+</mat-card>
+<mat-card
+  class="confirmation"
+  *ngIf="confirmationMessage"
+  data-cy="appConfirmation"
+>
+  {{ confirmationMessage }}
+</mat-card>

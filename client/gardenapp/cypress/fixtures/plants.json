@@ -1,0 +1,64 @@
+[
+    {
+      "plantId": 1,
+      "name": "Verbena Bonariensis",
+      "dateAdded": "2021-08-18T11:45:29.2718146",
+      "datePlanted": "2019-03-17T00:00:00",
+      "border": "Front Left",
+      "bloomFrom": "July",
+      "bloomTill": "September",
+      "winterGreen": true,
+      "colorFlower": "Purple",
+      "colorLeaves": "Green",
+      "maxHeight": 140,
+      "maxWidth": 50,
+      "comments": [
+        {
+          "id": 1,
+          "commentText": "Dit is een voorbeeld comment",
+          "dateAdded": "2021-08-18T11:45:29.290905"
+        }
+      ]
+    },
+    {
+      "plantId": 2,
+      "name": "Gaura Lindheimeri",
+      "dateAdded": "2021-08-18T11:45:29.2720289",
+      "datePlanted": "2019-04-28T00:00:00",
+      "border": "Front Right",
+      "bloomFrom": "August",
+      "bloomTill": "September",
+      "winterGreen": false,
+      "colorFlower": "White",
+      "colorLeaves": "Green",
+      "maxHeight": 75,
+      "maxWidth": 30,
+      "comments": []
+    },
+    {
+        "plantId": 1,
+        "name": "coreopsis",
+        "dateAdded": "2021-08-18T11:45:29.2718146",
+        "datePlanted": "2019-03-17T00:00:00",
+        "border": "Front Left",
+        "bloomFrom": "August",
+        "bloomTill": "October",
+        "winterGreen": false,
+        "colorFlower": "Yellow",
+        "colorLeaves": "Green",
+        "maxHeight": 40,
+        "maxWidth": 30,
+        "comments": [
+          {
+            "id": 1,
+            "commentText": "Dit is een voorbeeld comment",
+            "dateAdded": "2021-08-18T11:45:29.290905"
+          },
+          {
+            "id": 2,
+            "commentText": "Dit is een 2e voorbeeld comment",
+            "dateAdded": "2021-08-18T11:45:29.290905"
+          }
+        ]
+      }
+  ]

@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Comments</mat-card-title>
+    </mat-card-header>
+<form  [formGroup]="form"  (ngSubmit)="onSend()" >
+    <mat-form-field class="form-group " style="width: 300px" >
+            <mat-label>Type your comments here</mat-label>
+            <textarea
+            class="form-control"             
+            matInput
+            aria-label="commentText"
+            type="text"
+            formControlName="commentText"   
+            placeholder="Place your comments here"                  
+            required
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="4"
+            >       
+            </textarea>         
+     
+    </mat-form-field>
+    <div>
+        <button style="margin-bottom: 20px;" mat-raised-button type="submit" color="primary" [disabled]="!form.valid">
+        add comment
+        </button>
+    </div>
+</form>
+<div *ngFor="let comment of comments">
+    <mat-card class="card mb-3">
+        <mat-card-content class="card-text">{{ comment.commentText}}</mat-card-content> 
+        <mat-card-footer class="card-text text-sm-right"><small class="text-muted">{{ comment.dateAdded | date }}</small></mat-card-footer>
+    </mat-card>
+</div>
+</mat-card>

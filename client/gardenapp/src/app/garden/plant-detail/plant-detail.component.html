@@ -1,0 +1,155 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title
+        > {{ plant?.name }} 
+        <button mat-mini-fab color ="primary" aria-label="edit plant" (click)="editPlant()">
+          <mat-icon>editoutline</mat-icon>
+        </button>
+      </mat-card-title>
+      <mat-card-subtitle
+        >added on {{ plant?.dateAdded | date: 'longDate' }}</mat-card-subtitle
+      >
+    </mat-card-header>
+   
+    <div *ngIf="isEditing">
+      <form class="form-group" [formGroup]="form" (ngSubmit)="onUpdate()">
+        <div>  
+         <mat-form-field>
+           <mat-label>Plant Name</mat-label>
+           <input
+             matInput
+             aria-label="Name"
+             type="text"
+             formControlName="name"
+             
+             required
+           />
+      
+           <mat-error
+             *ngIf="form.get('name')['errors'] && form.get('name').touched"
+           >
+             {{ getErrorMessage(form.get('name')['errors']) }}
+           </mat-error>
+         </mat-form-field>  
+         <div>
+           <mat-form-field>
+             <mat-label>Date planted</mat-label>
+             <input
+               matInput
+               aria-label="Date Planted"
+               formControlName="datePlanted"              
+               type="date"            
+             />        
+           </mat-form-field>  
+         </div>
+         <div>
+           <mat-form-field>
+             <mat-label>Border</mat-label>
+             <input
+               matInput
+               aria-label="Border"            
+               formControlName="border"
+               type="text"
+             />        
+           </mat-form-field>  
+         </div>
+         <div class="form-group">
+           Bloom From :
+           <mat-select 
+             class="custom-select" 
+             formControlName="bloomFrom" 
+             (change)="changeBloomFrom($event)"             
+           > 
+            <mat-option value={{plant.bloomFrom}}>{{plant.bloomFrom}}</mat-option>
+             <mat-option *ngFor="let month of months">
+               {{month}}
+             </mat-option>
+           </mat-select>
+           Bloom Till :
+           <mat-select 
+             class="custom-select" 
+             formControlName="bloomTill" 
+             (change)="changeBloomTill($event)"             
+           > 
+            <mat-option value={{plant.bloomTill}}>{{plant.bloomTill}}</mat-option>
+             <mat-option *ngFor="let month of months">
+               {{month}}
+             </mat-option>
+           </mat-select>
+         </div>      
+         <div class="form-group">
+           <mat-checkbox 
+           formControlName="winterGreen"
+           (change)="checkWinterGreen($event)">   
+           Is this plant wintergreen ?     
+          </mat-checkbox>
+         </div>
+         <div>
+           <mat-form-field>
+             <mat-label>Color Flower</mat-label>
+             <input            
+               matInput            
+               aria-label="Color Flower"            
+               formControlName="colorFlower"
+               type="text"
+             />        
+           </mat-form-field>  
+           <mat-form-field>
+             <mat-label>Color Leaves</mat-label>
+             <input
+               matInput
+               aria-label="Color Leaves"          
+               formControlName="colorLeaves"
+               type="text"
+             />        
+           </mat-form-field>  
+         </div>
+         <div>
+           <mat-form-field>
+             <mat-label>Maximum Height</mat-label>
+             <input
+               matInput
+               aria-label="Max Height"      
+               placeholder="0"      
+               formControlName="maxHeight"
+               type="number"
+               min="0"
+             />        
+           </mat-form-field>  
+           <mat-form-field>
+             <mat-label>Maximum Width</mat-label>
+             <input
+               matInput
+               aria-label="Max Width"
+               placeholder="0"
+               formControlName="maxWidth"
+               type="number"
+               min="0"
+             />        
+           </mat-form-field>  
+         </div>
+   
+       </div>
+         <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">
+           update plant
+         </button>
+       </form>
+    
+  </div>  
+ 
+
+    <div *ngIf="(! isEditing)">
+      <mat-card>
+        <p>This plant was planted on <strong>{{plant?.datePlanted | date}}</strong></p>
+        <p>Flower color : <strong>{{plant?.colorFlower}}</strong> &nbsp; Leaves color : <strong>{{ plant?.colorLeaves}}</strong></p>
+        <p>Blooms from <strong>{{ plant?.bloomFrom}}</strong> till <strong>{{ plant?.bloomTill }}</strong></p>
+        <p>{{plant?.name }} is <strong> {{plant?.winterGreen  ? '' : 'not' }} Wintergreen.</strong>
+        <p>It can grow up to <strong>{{plant?.maxHeight}}</strong> centimeters and it's maximum width is <strong>{{plant?.maxWidth}}</strong>cm</p>
+      </mat-card>
+    </div>
+    <div>
+      <app-plant-comment [plant]="plant" [comments]='plant?.comments'></app-plant-comment>
+    </div>    
+  </mat-card>
+  
+  

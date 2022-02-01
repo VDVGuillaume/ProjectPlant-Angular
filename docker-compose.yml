@@ -1,0 +1,58 @@
+﻿version: '3.2'
+
+services:
+
+    nginx:
+        build:    
+            context: .        
+            dockerfile: ./nginx/Dockerfile
+        ports: 
+            - "80:80"
+        restart: always       
+        networks: 
+            my-network:
+                aliases: 
+                    - proxy     
+    db:        
+        build: 
+            context: .
+            dockerfile : ./database/Dockerfile
+        image: mcmoe/mssqldocker:v2017.CU24.0
+        environment: 
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "HelloWorld123!"
+            MSSQL_DB: garden
+            MSSQL_USER: gardenapp
+            MSSQL_PASSWORD: "HelloWorld123!"
+        ports:
+            - "1433:1433"
+        networks:
+            - my-network
+        
+            
+    api:
+        build: 
+            context: .
+            dockerfile: ./GardenApi/WebApplication1/Dockerfile        
+        depends_on:             
+            - db
+        ports:
+            - "44390:44390"
+        networks:
+            my-network:
+                aliases: 
+                    - api
+
+    app:
+        build:
+            context: .
+            dockerfile: ./client/gardenapp/Dockerfile 
+        ports:
+            - "4200:4200"       
+        networks:
+            my-network:
+                aliases: 
+                    - app
+
+networks:
+    my-network:
