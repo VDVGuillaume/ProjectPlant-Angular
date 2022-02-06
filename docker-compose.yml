@@ -48,7 +48,7 @@ services:
             - NODE_OPTIONS=--openssl-legacy-provider
         build:
             context: .
-            dockerfile: ./client/gardenapp/Dockerfile 
+            dockerfile: ./gardenapp/Dockerfile 
         ports:
             - "4200:4200"       
         networks:
